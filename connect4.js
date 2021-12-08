@@ -19,8 +19,8 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   board.length = HEIGHT;
   for (let i = 0; i < HEIGHT; i++) {
-      board[i] = [];
-      board[i].length = WIDTH;
+    board[i] = [];
+    board[i].length = WIDTH;
   }
 }
 
@@ -28,18 +28,18 @@ function makeBoard() {
 
 function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
-
+  let htmlBoard = document.getElementById('board');
   // TODO: add comment for this code
   let top = document.createElement("tr");
   top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
+  top.addEventListener("click", handleClick); //these three lines create the top row of the table and create an event listener for clicks to place pieces in the row (in connect four they all come from the top)
 
-  for (var x = 0; x < WIDTH; x++) {
+  for (let x = 0; x < WIDTH; x++) {
     let headCell = document.createElement("td");
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
-  htmlBoard.append(top);
+  htmlBoard.append(top); //these lines create the indivual cells (table datacells) to fill out the row according to the WIDTH constant above, and add them to the end of the row as they are created (hence append)
 
   // TODO: add comment for this code
   for (let y = 0; y < HEIGHT; y++) {
@@ -50,7 +50,7 @@ function makeHtmlBoard() {
       row.append(cell);
     }
     htmlBoard.append(row);
-  }
+  } //these lines create further rows below the header row to create the playing area below the column selectors
 }
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
