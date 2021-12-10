@@ -66,7 +66,7 @@ function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   let newPiece = document.createElement('div');
   newPiece.classList.add('piece', `p${currPlayer}`);
-  //added p before the currPlayer number in the class to avoid requiring unicode characters to express the numbers in the CSS, which makes it difficult to read
+  //added p before the currPlayer number in the class to avoid requiring unicode characters to express the numbers in the CSS, which makes it difficult to read/understand
   let spot = document.querySelector('td');
   spot.append(newPiece);
   if (currPlayer === 1) {
