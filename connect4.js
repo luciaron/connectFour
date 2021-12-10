@@ -57,7 +57,7 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  return 5;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -67,7 +67,7 @@ function placeInTable(y, x) {
   let newPiece = document.createElement('div');
   newPiece.classList.add('piece', `p${currPlayer}`);
   //added p before the currPlayer number in the class to avoid requiring unicode characters to express the numbers in the CSS, which makes it difficult to read/understand
-  let spot = document.querySelector(`#${CSS.escape(x)}`);
+  let spot = document.querySelector(`#${CSS.escape(y + "-" + x)}`);
   spot.append(newPiece);
   if (currPlayer === 1) {
     currPlayer++;
