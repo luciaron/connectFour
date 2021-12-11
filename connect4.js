@@ -58,7 +58,13 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 5;
+  let y = 5;
+  for (let i = 5; i >= 0; i--) {
+    if (board[i][x] > 0) {
+      y--;
+    }
+  }
+  return y;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -76,7 +82,7 @@ function placeInTable(y, x) {
   board[y][x] = currPlayer;
 
   //counts as a piece played (for alternate tie logic - see handleClick below)
-  // piecesPlayed++;
+  piecesPlayed++;
 }
 
 /** endGame: announce game end */
@@ -111,14 +117,17 @@ function handleClick(evt) {
   };
 
   // check for tie
-  // is every element of every array true?
-  if (board.every(column => column.every(cell => { cell === true }))) {
-    return endGame("The board is full with no winner. Tied game!")
-  }
+  // is every element of every array truthy?
+  // if (board.every(row => row.every(cell => {cell == true}))) { //this is what i wrote as an early draft; without brackets it calls a tie after one piece is played
+  //   return endGame("The board is full with no winner. Tied game!")
+  // }
+  // if (board.every(row => row.every(cell => cell))) { //this is the logic from the solution. it didn't work either. same thing: calls a tie after one piece is played
+  //   return endGame('Tie!');
+  // }
   // OR: is the board full based on its height and width?
-  // if (piecesPlayed >= HEIGHT * WIDTH) {
-  //   return endGame('The board is full with no winner. The game results in a tie!')
-  // };
+  if (piecesPlayed >= HEIGHT * WIDTH) {
+    return endGame('The board is full with no winner. The game results in a tie!')
+  };
 
   // switch players
   currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
