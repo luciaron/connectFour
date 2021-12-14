@@ -118,16 +118,18 @@ function handleClick(evt) {
 
   // check for tie
   // is every element of every array truthy?
-  // if (board.every(row => row.every(cell => {cell == true}))) { //this is what i wrote as an early draft; without brackets it calls a tie after one piece is played
+  // if (board.every(
+  //   row => row.every(
+  //     cell => cell == true))) { //returns true for one cell, but does NOT check for the other cells because they are null. in order for this to work, when making the board, i would need to assign 0 to each cell so it remains falsy but is evaluated by .every
   //   return endGame("The board is full with no winner. Tied game!")
   // }
-  // if (board.every(row => row.every(cell => cell))) { //this is the logic from the solution. it didn't work either. same thing: calls a tie after one piece is played
-  //   return endGame('Tie!');
-  // }
+  if (board.every(row => row.every(cell => cell))) { //this is the logic from the solution. it didn't work either. same thing: calls a tie after one piece is played
+    return endGame('Tie!');
+  }
   // OR: is the board full based on its height and width?
-  if (piecesPlayed >= HEIGHT * WIDTH) {
-    return endGame('The board is full with no winner. The game results in a tie!')
-  };
+  // if (piecesPlayed >= HEIGHT * WIDTH) {
+  //   return endGame('The board is full with no winner. The game results in a tie!')
+  // };
 
   // switch players
   currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
